@@ -1,6 +1,9 @@
 from observer import *
 from random import *
 
+"""******************************************************
+*Class that represents a house
+******************************************************"""
 class Home(Observer, Observable): 
 	
 	def __init__(self):
@@ -33,18 +36,22 @@ class Home(Observer, Observable):
 				self.monstersInHouse.append(m)
 				m.add_observer(self) 
 
+	#getter for the number of monster 
 	def getNumMonster(self):
 
 		return self.numMonster
 
+	#getter for the list of monsters in the house 
 	def getMonstersInHouse(self):
 
 		return self.monstersInHouse
 
+	#getter for the number of people in the house 
 	def getNumPeople(self):
 
 		return self.numPeople
 
+	#method to attack all of the monsters inside of the house
 	def attackHouse(self, weaponName, attackValue):
 
 		for monster in monstersInHouse:
@@ -58,7 +65,7 @@ class Home(Observer, Observable):
 					self.numMonster = self.numMonster - 1
 					self.numPeople = numPeople + 1
 
-
+	#method to attack the player 
 	def attackPlayer(self):
 
 		damage = 0
