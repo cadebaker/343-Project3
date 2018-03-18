@@ -1,7 +1,10 @@
 from observer import *
 from random import *
 
-#create the super NPC class
+"""******************************************************
+*Non-player character class. This is used by every type 
+*of monster and it is used by people as well.
+******************************************************"""
 class npc(Observable):
 
 	#constructor
@@ -35,7 +38,9 @@ class npc(Observable):
 		return self.weaponDamage
 
 
-#create the NPC class for a Person
+"""******************************************************
+*Uses the Non-player character class to create a Person.
+******************************************************"""
 class Person(npc):
 	def __init__(self):
 		super(Person,self).__init__()
@@ -48,7 +53,9 @@ class Person(npc):
 				     "NerdBombs" : 0
 				    }
 
-#create the NPC class for a Zombie
+"""******************************************************
+*Uses the Non-player character class to create a Zombie.
+******************************************************"""
 class Zombie(npc):
 	def __inti__(self):
 		super(Zombie,self).__init__()
@@ -60,7 +67,9 @@ class Zombie(npc):
 				     "ChocolateBars" : 1,
 				     "NerdBombs" : 1
 				    }
-#create the NPC class for a Vampire
+"""******************************************************
+*Uses the Non-player character class to create a Vampire.
+******************************************************"""
 class Vampire(npc):
 	def __inti__(self):
 		super(Vampire,self).__init__()
@@ -72,7 +81,10 @@ class Vampire(npc):
 				     "ChocolateBars" : 0,
 				     "NerdBombs" : 1
 				    }
-#create the NPC class for a Ghouls
+
+"""******************************************************
+*Uses the Non-player character class to create a Ghoul.
+******************************************************"""
 class Ghouls(npc):
 	def __inti__(self):
 		super(Ghouls,self).__init__()
@@ -84,7 +96,10 @@ class Ghouls(npc):
 				     "ChocolateBars" : 1,
 				     "NerdBombs" : 5
 				    }
-#create the NPC class for a Werewolf
+
+"""******************************************************
+*Uses the Non-player character class to create a Werewolf
+******************************************************"""
 class Werewolf(npc):
 	def __inti__(self):
 		super(Werewolf,self).__init__()
