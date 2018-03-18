@@ -15,9 +15,9 @@ class Home(Observer, Observable):
 
 		while len(self.monstersInHouse) <= self.numMonsters:
 
-			monsterType = randint(0,4)
+			monsterType = randint(1,4)
 
-			if monsterType == 0:
+			if monsterType == 1:
 				m = Zombie()
 				self.monstersInHouse.append(m)
 				m.add_observer(self) 
@@ -36,6 +36,8 @@ class Home(Observer, Observable):
 				m = Werewolf()
 				self.monstersInHouse.append(m)
 				m.add_observer(self) 
+
+			
 
 	#getter for the number of monster 
 	def getNumMonster(self):
