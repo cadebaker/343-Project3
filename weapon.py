@@ -1,25 +1,35 @@
 from observer import *
 from random import uniform
 
+
+"""******************************************************
+*Class with variables and methods that each weapon will
+*use
+******************************************************"""
 class Weapon(Observable):
 	
+	#constructor
 	def __init__(self):
 		self.weaponName = ""
 		self.strength = 0
 		self.numberOfUses = 0
 
-	def getMod(self):
-		return self.mod
-
+	#getter for the number of uses 
 	def getUses(self):
 		return self.numberOfUses
 
+	#getter for the weapon name
 	def getWeaponName(self):
 		return self.weaponName
 
+	#use the weapon 
 	def useWeapom(self):
 		self.numberOfUses = numberOfUses - 1
 
+"""******************************************************
+*Uses the Weapon class to create a HersheyKiss and store 
+*information specifcially for HersheyKisses
+******************************************************"""
 class HersheyKiss(Weapon):
 	
 	def __init__(self):
@@ -28,7 +38,10 @@ class HersheyKiss(Weapon):
 		self.strength = 1
 		self.numberOfUses = 10000000
 
-
+"""******************************************************
+*Uses the Weapon class to create a SourStraw and store 
+*information specifcially for SourStraw
+******************************************************"""
 class SourStraw(Weapon):
 
 	def __init__(self):
@@ -37,6 +50,10 @@ class SourStraw(Weapon):
 		self.strength = uniform(1.0, 1.75)
 		self.numberOfUses = 2
 
+"""******************************************************
+*Uses the Weapon class to create a ChocolateBar and store 
+*information specifcially for ChocolateBar
+******************************************************"""
 class ChocolateBar(Weapon):
 
 	def __init__(self):
@@ -45,7 +62,10 @@ class ChocolateBar(Weapon):
 		self.strength = uniform(2.0, 2.4)
 		self.numberOfUses = 4
 
-
+"""******************************************************
+*Uses the Weapon class to create a NerdBomb and store 
+*information specifcially for NerdBomb
+******************************************************"""
 class NerdBomb(Weapon):
 
 	def __init__(self):
