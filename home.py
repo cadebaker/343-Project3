@@ -1,5 +1,6 @@
 from observer import *
 from random import *
+from NPC import *
 
 """******************************************************
 *Class that represents a house
@@ -8,13 +9,13 @@ class Home(Observer, Observable):
 	
 	def __init__(self):
 		
-		self.numMonsters = random.randint(0, 10)
+		self.numMonsters = randint(0, 10)
 		self.monstersInHouse = []
 		self.numPeople = 0
 
-		while len(self.monstersInHouse) <= numMonsters:
+		while len(self.monstersInHouse) <= self.numMonsters:
 
-			monsterType = random.randint(0,5)
+			monsterType = randint(0,4)
 
 			if monsterType == 0:
 				m = Zombie()

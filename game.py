@@ -39,13 +39,13 @@ class Game():
 		print("The asterisk infront of the house shows the players current location")
 		print("How large is your neighborhood?")
 		
-		self.rows = input("Number of rows: ")
-		self.cols = input("Number of columns: ")
+		self.rows = int(input("Number of rows: "))
+		self.cols = int(input("Number of columns: "))
 		if self.rows < 0 or self.rows > 10 or self.cols < 0 or self.cols > 10:
 			print("The number of columns must be more than 0 and less than 10.")
 			introduction()
 
-		self.neighborhood.createNeighborhood(rows,cols)
+		self.neighborhood.createNeighborhood(self.rows,self.cols)
 
 	#prints the commands menu 
 	def instructions(self):

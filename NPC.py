@@ -9,7 +9,7 @@ class npc(Observable):
 
 	#constructor
 	def __init__(self):
-		self.npcName
+		self.name
 		self.health
 		self.attackStrength
 		self.weaponDamage = {}

@@ -1,5 +1,6 @@
 from observer import Observer
 from player import *
+from home import *
 
 """******************************************************
 *A class that represents the entire neighborhood
@@ -22,7 +23,7 @@ class Neighborhood(Observer):
 		for row in range(0, self.rows):
 			self.neighborhood.append([])
 			for col in range(0, self.cols):
-				self.h = House()
+				self.h = Home()
 				self.neighborhood[row].append(h)
 				self.neighborhood[row][col].add_observer(self)
 
