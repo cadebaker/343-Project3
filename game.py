@@ -5,13 +5,8 @@ from NPC import *
 from observer import *
 from home import *
 
-
-"""******************************************************
-*Runs the entire game function 
-******************************************************"""
 class Game(): 
 	
-	#constructor
 	def __init__(self):
 
 		self.player = Player()
@@ -21,7 +16,7 @@ class Game():
 		self.inGame = 1
 		self.wonGame = 0
 
-	#prints the introduction to the game and sets the neighborhood size 
+
 	def introduction(self):
 		print("Batches of bad candy had transformed your friends and neighbors into all sorts of crazy monsters. ")
 		print("Somehow you missed the tainted candy; it is therefore up to you to save your neighborhood and turn everyone back to normal.")
@@ -47,7 +42,6 @@ class Game():
 
 		self.neighborhood.createNeighborhood(self.rows,self.cols)
 
-	#prints the commands menu 
 	def instructions(self):
 		print("The game commands are as follows")
 		print("commands : display this commands menu")
@@ -57,7 +51,6 @@ class Game():
 		print("attack   : attack the house we are currently at with your current weapon")
 		print("quit     : end game")
 
-	#prompts the player for next move
 	def promptPlayer(self):
 		self.command = raw_input("Enter command: ")
 
@@ -95,7 +88,6 @@ class Game():
 			self.inGame = 0
 
 
-	#handles the fights when the player attacks 
 	def fight(self):
 
 		currentLocation = self.player.getLocation()
@@ -115,7 +107,7 @@ class Game():
 			self.inGame = 0
 
 
-	#runs the entire game 
+
 	def run(self):
 
 		self.introduction()
