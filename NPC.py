@@ -1,8 +1,8 @@
-from observe import observable
+from observer import *
 from random import *
 
 #create the super NPC class
-class npc(observable):
+class npc(Observable):
 
 	#constructor
 	def __init__(self):
@@ -10,16 +10,13 @@ class npc(observable):
 		self.health
 		self.attackStrength
 		self.weaponDamage = {}
-	#set the NPC name
-	def setname(self, name)
-		self.npcName = name
 
 	#set the NPC health points
-	def setHealth(self, health)
+	def setHealth(self, health):
 		self.health = health
 
 	#set the NPC attack strength
-	def setAttackStrength(self, attackStrength)
+	def setAttackStrength(self, attackStrength):
 		self.attackStrength = attackStrength
 
 	#get the NPC name
@@ -31,12 +28,15 @@ class npc(observable):
 		return self.health
 
 	#get the attack strength of the NPC
-	def getAttackStrength(self)
+	def getAttackStrength(self):
 		return self.attackStrength
+
+	def getWeaponDamage(self):
+		return self.weaponDamage
 
 
 #create the NPC class for a Person
-class Person(NPC):
+class Person(npc):
 	def __init__(self):
 		super(Person,self).__init__()
 		self.name = "Person"
@@ -45,11 +45,11 @@ class Person(NPC):
 		self.weaponDamage = {"HersheyKisses" : 0,
 				     "SourStaws": 0,
 				     "ChocolateBars" : 0,
-				     "NerdBombs" : 0;
+				     "NerdBombs" : 0
 				    }
 
 #create the NPC class for a Zombie
-class Zombie(NPC):
+class Zombie(npc):
 	def __inti__(self):
 		super(Zombie,self).__init__()
 		self.name = "Zombie"
@@ -58,10 +58,10 @@ class Zombie(NPC):
 		self.weaponDamage = {"HersheyKisses" : 1,
 				     "SourStaws": 2,
 				     "ChocolateBars" : 1,
-				     "NerdBombs" : 1;
+				     "NerdBombs" : 1
 				    }
 #create the NPC class for a Vampire
-class Vampire(NPC):
+class Vampire(npc):
 	def __inti__(self):
 		super(Vampire,self).__init__()
 		self.name = "Vampire"
@@ -70,10 +70,10 @@ class Vampire(NPC):
 		self.weaponDamage = {"HersheyKisses" : 1,
 				     "SourStaws": 1,
 				     "ChocolateBars" : 0,
-				     "NerdBombs" : 1;
+				     "NerdBombs" : 1
 				    }
 #create the NPC class for a Ghouls
-class Ghouls(NPC):
+class Ghouls(npc):
 	def __inti__(self):
 		super(Ghouls,self).__init__()
 		self.name = "Ghoul"
@@ -82,10 +82,10 @@ class Ghouls(NPC):
 		self.weaponDamage = {"HersheyKisses" : 1,
 				     "SourStaws": 1,
 				     "ChocolateBars" : 1,
-				     "NerdBombs" : 5;
+				     "NerdBombs" : 5
 				    }
 #create the NPC class for a Werewolf
-class Werewolf(NPC):
+class Werewolf(npc):
 	def __inti__(self):
 		super(Werewolf,self).__init__()
 		self.name = "Werewolf"
@@ -94,5 +94,5 @@ class Werewolf(NPC):
 		self.weaponDamage = {"HersheyKisses" : 1,
 				     "SourStaws": 0,
 				     "ChocolateBars" : 0,
-				     "NerdBombs" : 1;
+				     "NerdBombs" : 1
 				    }
