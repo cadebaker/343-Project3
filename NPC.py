@@ -9,9 +9,9 @@ class npc(Observable):
 
 	#constructor
 	def __init__(self):
-		self.name
-		self.health
-		self.attackStrength
+		self.name = ""
+		self.health = 0
+		self.attackStrength = 0
 		self.weaponDamage = {}
 
 	#set the NPC health points
@@ -85,9 +85,9 @@ class Vampire(npc):
 """******************************************************
 *Uses the Non-player character class to create a Ghoul.
 ******************************************************"""
-class Ghouls(npc):
+class Ghoul(npc):
 	def __inti__(self):
-		super(Ghouls,self).__init__()
+		super(Ghoul,self).__init__()
 		self.name = "Ghoul"
 		self.health = randint(40, 80)
 		self.attackStrength = randint(15, 30)
