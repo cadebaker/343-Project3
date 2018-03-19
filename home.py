@@ -1,5 +1,6 @@
 from observer import *
 from random import *
+from NPC import *
 
 """******************************************************
 *Class that represents a house
@@ -8,38 +9,38 @@ class Home(Observer, Observable):
 	
 	def __init__(self):
 		
-		self.numMonsters = random.randint(0, 10)
+		self.numMonsters = randint(0, 10)
 		self.monstersInHouse = []
 		self.numPeople = 0
 
-		while len(self.monstersInHouse) <= numMonsters:
+		while len(self.monstersInHouse) <= self.numMonsters:
 
-			monsterType = random.randint(0,5)
+			monsterType = randint(0,4)
+			m = Zombie()
 
 			if monsterType == 0:
 				m = Zombie()
 				self.monstersInHouse.append(m)
-				m.add_observer(self) 
 
-			elif monsterType == 2:
+			elif monsterType == 1:
 				m = Vampire()
 				self.monstersInHouse.append(m)
-				m.add_observer(self)
+
+			elif monsterType == 2:
+				m = Ghouls() 
+				self.monstersInHouse.append(m)
 
 			elif monsterType == 3:
-				m = Ghoul() 
-				self.monstersInHouse.append(m)
-				m.add_observer(self) 
-
-			elif monsterType == 4:
 				m = Werewolf()
 				self.monstersInHouse.append(m)
-				m.add_observer(self) 
+
+			#m.add_observer(self) 
+
 
 	#getter for the number of monster 
 	def getNumMonster(self):
 
-		return self.numMonster
+		return self.numMonsters
 
 	#getter for the list of monsters in the house 
 	def getMonstersInHouse(self):
@@ -54,21 +55,22 @@ class Home(Observer, Observable):
 	#method to attack all of the monsters inside of the house
 	def attackHouse(self, weaponName, attackValue):
 
-		for monster in monstersInHouse:
-			damages = monster.getWeaponDamage()
+		for monster in self.monstersInHouse:
+			damage = int(monster.getWeaponDamage(weaponName))
 			monsterHealth = monster.getHealth()
-			monsterHealth = monsterHealth - (damages[weaponName] * attackValue)
+			monsterHealth = monsterHealth - (damage * attackValue)
 			monster.setHealth(monsterHealth)
 
 			if monsterHealth <= 0:
 					monster = Person()
-					self.numMonster = self.numMonster - 1
-					self.numPeople = numPeople + 1
+					self.numMonsters = self.numMonsters - 1
+					self.numPeople = self.numPeople + 1
 
 	#method to attack the player 
 	def attackPlayer(self):
 
 		damage = 0
-		for monster in monstersInHouse:
+		for monster in self.monstersInHouse:
 			damage = damage + monster.getAttackStrength()
 
+		return damage
