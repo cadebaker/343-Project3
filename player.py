@@ -12,19 +12,19 @@ class Player(Observable):
 
 		self.health = randint(100,125)
 		self.attackValue = randint(10,20)
-		self.weapons = [0] * 10 
+		self.weapons = [] 
 		self.location = [0,0]
 
 		#randomly populate the weapons inventory 
-		for index in range(0,11):
-			self.weaponType = randint(0, 5)
-			if self.weaponType == 1:
+		for index in range(0,10):
+			self.weaponType = randint(0, 3)
+			if self.weaponType == 0:
 				self.weapons.insert(index, HersheyKiss())
-			elif self.weaponType == 2:
+			elif self.weaponType == 1:
 				self.weapons.insert(index, SourStraw())
-			elif self.weaponType == 3:
+			elif self.weaponType == 2:
 				self.weapons.insert(index, ChocolateBar())
-			elif self.weaponType == 4:
+			elif self.weaponType == 3:
 				self.weapons.insert(index, NerdBomb())
 
 		#set the current weapon to be the first weapon in the inventory 		
@@ -53,36 +53,37 @@ class Player(Observable):
 
 	#getter for the weapons inventory
 	def getInventory(self):
-		return weapons
+		return self.weapons
 
 	#getter for the current weapon
 	def getCurrentWeapon(self):
-		return currentWeapon
+		return self.currentWeapon
 
 	#setter for the current weapon 
 	def setCurrentWeapon(self, index):
-		self.currentWeapon = weapons[index]
+		self.currentWeapon = self.weapons[index]
 
 	#prints the player stats 
 	def printPlayerStats(self):
 		print("Player Stats")
-		print("Current Health: %d", self.health)
-		print("Current Attack Value: %d", self.attackValue)
+		print("Current Health: ", self.health)
+		print("Current Attack Value: ", self.attackValue)
 
 	#prints the weapon inventory 
 	def printInventory(self):
-
-		for index in weapons:
-			print("Weapon %d", index)
-			print("		  %s : %d uses", weapons[index].getName(), weapons[index].getUses())
+		for index in range(0,len(self.weapons)):
+			print("Weapon ", index)
+			print("	Name: ", self.weapons[index].getWeaponName())
+			print("	Uses Left:", self.weapons[index].getUses())
+			print("  ")
 
 	#updates the weapons inventory 
 	def updateInventory(self):
 
-		for index in weapons:
+		for index in range(0, len(self.weapons)):
 
 			#if the weapon uses if 0 we replace it with a random weapon 
-			if weapons[index].getUses() == 0: 
+			if self.weapons[index].getUses() == 0: 
 		
 				self.weaponType = randInt(0, 5)
 				if weaponType == 1:
@@ -93,6 +94,3 @@ class Player(Observable):
 					weaponType[index] = ChocolateBar()
 				else:
 					weaponType[index] = NerdBomb()
-
-
-
