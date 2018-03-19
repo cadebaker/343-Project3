@@ -8,7 +8,9 @@ from home import *
 class Game(): 
 	
 	def __init__(self):
-
+		
+		self.player = Player()
+		self.neighborhood = Neighborhood()
 		self.rows = 0
 		self.cols = 0
 		self.inGame = 1
@@ -39,7 +41,7 @@ class Game():
 			print("The number of columns must be more than 0 and less than 20.")
 			introduction()
 		print(" ")
-		neighborhood.createNeighborhood(self.rows,self.cols)
+		self.neighborhood.createNeighborhood(self.rows,self.cols)
 
 	def instructions(self):
 		print("The game commands are as follows")
@@ -61,28 +63,28 @@ class Game():
 			newCol = int(input("New Column: "))
 
 			if newRow >= 0 and newRow < self.rows and newCol > 0 and newCol < self.cols: 
-				player.setLocation(newRow, newCol)
+				self.player.setLocation(newRow, newCol)
 
-			print("Your new location is: {}".format(player.getLocation()))
+			print("Your new location is: {}".format(self.player.getLocation()))
 			print(" ")
-			neighborhood.printNeighborhood(player.getLocation())
+			self.neighborhood.printNeighborhood(self.player.getLocation())
 
 		elif command == "stats":
-			player.printPlayerStats()
+			self.player.printPlayerStats()
 			print(" ")
 
 		elif command == "weapon":
 		
-			player.printInventory()
-			print("Your current weapon is : ", player.getCurrentWeapon().getWeaponName())
-			print("Your uses left: ", player.getCurrentWeapon().getUses() )
+			self.player.printInventory()
+			print("Your current weapon is : ", self.player.getCurrentWeapon().getWeaponName())
+			print("Your uses left: ", self.player.getCurrentWeapon().getUses() )
 			option = input("Would you like to change your current weapon? Enter y for yes and n for no: ")
 			if option == "y": 
 				weaponIndex = int(input("Enter the number of the weapon you would like to use from inventory: "))
 				if weaponIndex > 0 and weaponIndex < 9:
-					player.setCurrentWeapon(weaponIndex)
-					print("Your current weapon is : ", player.getCurrentWeapon().getWeaponName())
-					print("Your uses left: ", player.getCurrentWeapon().getUses() )
+					self.player.setCurrentWeapon(weaponIndex)
+					print("Your current weapon is : ", self.player.getCurrentWeapon().getWeaponName())
+					print("Your uses left: ", self.player.getCurrentWeapon().getUses() )
 				else:
 					print("That is not a valid weapon choice. To try again type the weapon command.")
 			print(" ")
@@ -94,7 +96,7 @@ class Game():
 		elif command == "attack":
 			self.fight()
 			print(" ")
-			neighborhood.printNeighborhood(player.getLocation())
+			self.neighborhood.printNeighborhood(self.player.getLocation())
 
 		elif command == "quit":
 			self.inGame = 0
@@ -103,20 +105,20 @@ class Game():
 
 	def fight(self):
 
-		currentLocation = player.getLocation()
-		house = neighborhood.getHouse(currentLocation[0], currentLocation[1])
-		house.attackHouse(player.getCurrentWeapon().getWeaponName(), player.getAttackValue())
+		currentLocation = self.player.getLocation()
+		house = self.neighborhood.getHouse(currentLocation[0], currentLocation[1])
+		house.attackHouse(self.player.getCurrentWeapon().getWeaponName(), self.player.getAttackValue())
 		damageToPlayer = house.attackPlayer()
-		currentHealth = player.getHealth() - damageToPlayer
+		currentHealth = self.player.getHealth() - damageToPlayer
 
 		if currentHealth > 0 :
-			player.setHealth(currentHealth)
+			self.player.setHealth(currentHealth)
 
 		else: 
 			self.wonGame = 0
 			self.inGame = 0
 
-		if neighborhood.getTotalNumMonster() == 0:
+		if self.neighborhood.getTotalNumMonster() == 0:
 			self.wonGame = 1
 			self.inGame = 0
 
@@ -125,7 +127,7 @@ class Game():
 	def run(self):
 
 		self.introduction()
-		neighborhood.printNeighborhood(player.getLocation())
+		self.neighborhood.printNeighborhood(self.player.getLocation())
 		self.instructions()
 
 		while self.inGame == 1:
@@ -140,7 +142,5 @@ class Game():
 		else:
 			print("You quit, Goodbye")
 
-player = Player()
-neighborhood = Neighborhood()
 g = Game()
 g.run()
