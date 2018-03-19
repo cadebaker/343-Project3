@@ -35,6 +35,7 @@ class Home(Observer, Observable):
 				self.monstersInHouse.append(m)
 
 			#m.add_observer(self) 
+			#print(m.getHealth())
 
 
 	#getter for the number of monster 
@@ -54,17 +55,24 @@ class Home(Observer, Observable):
 
 	#method to attack all of the monsters inside of the house
 	def attackHouse(self, weaponName, attackValue):
-
-		for monster in self.monstersInHouse:
-			damage = int(monster.getWeaponDamage(weaponName))
-			monsterHealth = monster.getHealth()
+		print("number of monsters: {}".format(self.numMonsters))
+		
+		for monster in range(0, self.numMonsters):
+			print("monster {}".format(monster))
+			damage = int(self.monstersInHouse[monster].getWeaponDamage(weaponName))
+			monsterHealth = self.monstersInHouse[monster].getHealth()
 			monsterHealth = monsterHealth - (damage * attackValue)
-			monster.setHealth(monsterHealth)
+			print("health before {}".format(self.monstersInHouse[monster].getHealth()))
+			print("health after {}".format(monsterHealth))
 
-			if monsterHealth <= 0:
-					monster = Person()
+			if monsterHealth > 0:
+				self.monstersInHouse[monster].setHealth(monsterHealth)
+			else:
+					print("monster killed")
+					self.monstersInHouse[monster] = Person()
 					self.numMonsters = self.numMonsters - 1
 					self.numPeople = self.numPeople + 1
+
 
 	#method to attack the player 
 	def attackPlayer(self):
