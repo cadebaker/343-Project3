@@ -23,7 +23,7 @@ class Weapon(Observable):
 		return self.weaponName
 
 	#use the weapon 
-	def useWeapom(self):
+	def useWeapon(self):
 		self.numberOfUses = numberOfUses - 1
 
 """******************************************************
@@ -34,7 +34,7 @@ class HersheyKiss(Weapon):
 	
 	def __init__(self):
 		Weapon().__init__()
-		self.weaponName = "HerseyKiss"
+		self.weaponName = "HersheyKisses"
 		self.strength = 1
 		self.numberOfUses = 10000000
 
@@ -46,7 +46,7 @@ class SourStraw(Weapon):
 
 	def __init__(self):
 		Weapon().__init__()
-		self.weaponName = "SourStraw"
+		self.weaponName = "SourStraws"
 		self.strength = uniform(1.0, 1.75)
 		self.numberOfUses = 2
 
@@ -58,7 +58,7 @@ class ChocolateBar(Weapon):
 
 	def __init__(self):
 		Weapon().__init__()
-		self.weaponName = "ChocolateBar"
+		self.weaponName = "ChocolateBars"
 		self.strength = uniform(2.0, 2.4)
 		self.numberOfUses = 4
 
@@ -70,7 +70,6 @@ class NerdBomb(Weapon):
 
 	def __init__(self):
 		Weapon().__init__()
-		self.weaponName = "NerdBomb"
+		self.weaponName = "NerdBombs"
 		self.strength = uniform(3.5, 5.0)
 		self.numberOfUses = 1
-
