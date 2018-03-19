@@ -9,10 +9,13 @@ class npc(Observable):
 
 	#constructor
 	def __init__(self):
-		self.npcName
-		self.health
-		self.attackStrength
-		self.weaponDamage = {}
+		self.name = " "
+		self.health = 0
+		self.attackStrength =0
+		self.weaponDamage = {"HersheyKisses" : 0,
+				     "SourStraws": 0,
+				     "ChocolateBars" : 0,
+				     "NerdBombs" : 0}
 
 	#set the NPC health points
 	def setHealth(self, health):
@@ -34,7 +37,10 @@ class npc(Observable):
 	def getAttackStrength(self):
 		return self.attackStrength
 
-	def getWeaponDamage(self):
+	def getWeaponDamage(self, name):
+		return self.weaponDamage.get(name)
+
+	def getWeaponDamageList(self):
 		return self.weaponDamage
 
 
@@ -43,12 +49,12 @@ class npc(Observable):
 ******************************************************"""
 class Person(npc):
 	def __init__(self):
-		super(Person,self).__init__()
+		npc().__init__()
 		self.name = "Person"
 		self.health = 100
 		self.attackStrength = -1
 		self.weaponDamage = {"HersheyKisses" : 0,
-				     "SourStaws": 0,
+				     "SourStraws": 0,
 				     "ChocolateBars" : 0,
 				     "NerdBombs" : 0
 				    }
@@ -58,12 +64,12 @@ class Person(npc):
 ******************************************************"""
 class Zombie(npc):
 	def __inti__(self):
-		super(Zombie,self).__init__()
+		npc().__init__()
 		self.name = "Zombie"
 		self.health = randint(50, 100)
 		self.attackStrength = randint(0, 10)
 		self.weaponDamage = {"HersheyKisses" : 1,
-				     "SourStaws": 2,
+				     "SourStraws": 2,
 				     "ChocolateBars" : 1,
 				     "NerdBombs" : 1
 				    }
@@ -72,12 +78,12 @@ class Zombie(npc):
 ******************************************************"""
 class Vampire(npc):
 	def __inti__(self):
-		super(Vampire,self).__init__()
+		npc().__init__()
 		self.name = "Vampire"
 		self.health = randint(100, 200)
 		self.attackStrength = randint(10, 20)
 		self.weaponDamage = {"HersheyKisses" : 1,
-				     "SourStaws": 1,
+				     "SourStraws": 1,
 				     "ChocolateBars" : 0,
 				     "NerdBombs" : 1
 				    }
@@ -87,12 +93,12 @@ class Vampire(npc):
 ******************************************************"""
 class Ghouls(npc):
 	def __inti__(self):
-		super(Ghouls,self).__init__()
+		npc().__init__()
 		self.name = "Ghoul"
 		self.health = randint(40, 80)
 		self.attackStrength = randint(15, 30)
 		self.weaponDamage = {"HersheyKisses" : 1,
-				     "SourStaws": 1,
+				     "SourStraws": 1,
 				     "ChocolateBars" : 1,
 				     "NerdBombs" : 5
 				    }
@@ -102,12 +108,12 @@ class Ghouls(npc):
 ******************************************************"""
 class Werewolf(npc):
 	def __inti__(self):
-		super(Werewolf,self).__init__()
+		npc().__init__()
 		self.name = "Werewolf"
 		self.health = 200
 		self.attackStrength = randint(0, 40)
 		self.weaponDamage = {"HersheyKisses" : 1,
-				     "SourStaws": 0,
+				     "SourStraws": 0,
 				     "ChocolateBars" : 0,
 				     "NerdBombs" : 1
 				    }
