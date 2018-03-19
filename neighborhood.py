@@ -9,6 +9,7 @@ class Neighborhood(Observer):
 
 	#constructor 
 	def __init__(self):
+		super(Neighborhood, self).__init__()
 		self.rows = 0
 		self.cols = 0
 		self.totalNumMonster = 0
@@ -24,7 +25,7 @@ class Neighborhood(Observer):
 			self.neighborhood.append([])
 			for col in range(0, self.cols):
 				h = Home()
-				#h.add_observer(self)
+				h.add_observer(self)
 				self.neighborhood[row].append(h)
 
 	#getter for the number of monsters in the neighborhood
