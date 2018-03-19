@@ -5,15 +5,15 @@ from weapon import *
 """******************************************************
 *Class that represents the player and all its methods
 ******************************************************"""
-class Player(Observable):
+class Player(Observer):
 
 	#constructor 
 	def __init__(self):
-
+		super(Player, self).__init__()
 		self.health = randint(100,125)
 		self.attackValue = randint(10,20)
 		self.weapons = [] 
-		self.location = [0,0]
+		self.location = [0, 0]
 
 		#randomly populate the weapons inventory 
 		for index in range(0,10):
@@ -78,7 +78,7 @@ class Player(Observable):
 			print("  ")
 
 	#updates the weapons inventory 
-	def updateInventory(self):
+	def update(self):
 
 		for index in range(0, len(self.weapons)):
 
