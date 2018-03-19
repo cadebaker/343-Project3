@@ -42,7 +42,6 @@ class Neighborhood(Observer):
 	def printNeighborhood(self, location):
 		currentLocation = [0, 0] 
 
-		self.totalNumMonster = 0
 		for row in range(0, self.rows):
 
 			for col in range(0, self.cols): 
@@ -100,4 +99,12 @@ class Neighborhood(Observer):
 						print("       ", end = '')
 
 			print(" ")
+
+	#updates the number of monsters in the neighborhood 
+	def update():
+		self.totalNumMonster = 0
+		for row in range(0, self.rows):
+			for col in range(0, self.cols): 
+				self.totalNumMonster = self.totalNumMonster - self.neighborhood[row][col].getNumMonster()
+
 				
