@@ -10,6 +10,7 @@ class Weapon(Observable):
 	
 	#constructor
 	def __init__(self):
+		super(Weapon, self).__init__()
 		self.weaponName = ""
 		self.strength = 0
 		self.numberOfUses = 0
@@ -22,16 +23,21 @@ class Weapon(Observable):
 	def getWeaponName(self):
 		return self.weaponName
 
+	#getter for the weapon strength
+	def getStrength(self):
+		return self.strength
+
 	#use the weapon 
 	def useWeapon(self):
 		self.numberOfUses = numberOfUses - 1
+
 
 """******************************************************
 *Uses the Weapon class to create a HersheyKiss and store 
 *information specifcially for HersheyKisses
 ******************************************************"""
 class HersheyKiss(Weapon):
-	
+
 	def __init__(self):
 		Weapon().__init__()
 		self.weaponName = "HersheyKisses"
