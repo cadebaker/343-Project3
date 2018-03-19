@@ -30,14 +30,15 @@ class Game():
 		print("Above each house is the address of the house")
 		print("The number inside of each house represents the number of monsters inside")
 		print("The asterisk infront of the house shows the players current location")
+		print(" ")
 		print("How large is your neighborhood?")
 		
 		self.rows = int(input("Number of rows: "))
 		self.cols = int(input("Number of columns: "))
-		if self.rows < 0 or self.rows > 10 or self.cols < 0 or self.cols > 10:
-			print("The number of columns must be more than 0 and less than 10.")
+		if self.rows < 0 or self.rows > 20 or self.cols < 0 or self.cols > 20:
+			print("The number of columns must be more than 0 and less than 20.")
 			introduction()
-
+		print(" ")
 		neighborhood.createNeighborhood(self.rows,self.cols)
 
 	def instructions(self):
@@ -48,6 +49,7 @@ class Game():
 		print("weapon   : this allows you to your weapon inventory and select the weapon you want to use")
 		print("attack   : attack the house we are currently at with your current weapon")
 		print("quit     : end game")
+		print(" ")
 
 	def promptPlayer(self):
 		command = input("Enter command: ")
@@ -58,11 +60,16 @@ class Game():
 			newRow = int(input("New Row: "))
 			newCol = int(input("New Column: "))
 
-			if newRow < 0 and newRow >= self.rows and newCol < 0 and newCol >= self.cols: 
+			if newRow >= 0 and newRow < self.rows and newCol > 0 and newCol < self.cols: 
 				player.setLocation(newRow, newCol)
+
+			print("Your new location is: {}".format(player.getLocation()))
+			print(" ")
+			neighborhood.printNeighborhood(player.getLocation())
 
 		elif command == "stats":
 			player.printPlayerStats()
+			print(" ")
 
 		elif command == "weapon":
 		
@@ -78,12 +85,16 @@ class Game():
 					print("Your uses left: ", player.getCurrentWeapon().getUses() )
 				else:
 					print("That is not a valid weapon choice. To try again type the weapon command.")
+			print(" ")
 
 		elif command == "commands":
 			self.instructions()
+			print(" ")
 
 		elif command == "attack":
 			self.fight()
+			print(" ")
+			neighborhood.printNeighborhood(player.getLocation())
 
 		elif command == "quit":
 			self.inGame = 0
@@ -118,7 +129,6 @@ class Game():
 		self.instructions()
 
 		while self.inGame == 1:
-			neighborhood.printNeighborhood(player.getLocation())
 			self.promptPlayer()
 
 		if self.wonGame == 1:
@@ -128,7 +138,7 @@ class Game():
 			print("You were defeated!")
 
 		else:
-			print("You quit")
+			print("You quit, Goodbye")
 
 player = Player()
 neighborhood = Neighborhood()
