@@ -45,32 +45,58 @@ class Neighborhood(Observer):
 		for row in range(0, self.rows):
 
 			for col in range(0, self.cols): 
-				print(" {} ".format(location), end = ' ' )
-			print("\n")
+				currentLocation  = [row, col]
+				if col == self.cols-1:
+					print(" {}".format(currentLocation))
+				else:
+					print(" {}".format(currentLocation), end = '' )
+
+			for col in range(0, self.cols):
+				if col == self.cols-1:
+					print(" _____ ")
+				else: 
+					print(" _____ ", end = '' )
+
+			for col in range(0, self.cols):
+				if col == self.cols-1:
+					print("|     |")
+				else: 
+					print("|     |", end = '' )
 
 			for col in range(0, self.cols): 
-				print(" _____", end = ' ' )
-			print("\n")
+				h = self.neighborhood[row][col]
+				self.totalNumMonster = self.totalNumMonster + h.getNumMonster()
+				if col == self.cols-1:
+					if(self.neighborhood[row][col].getNumMonster() != 10):
+						print("|  {}  |".format(self.neighborhood[row][col].getNumMonster()))
+				
+					else:
+						print("|  {} |".format(self.neighborhood[row][col].getNumMonster()))
+				else:
+					if(self.neighborhood[row][col].getNumMonster() != 10):
+						print("|  {}  |".format(self.neighborhood[row][col].getNumMonster()), end ='')
+				
+					else:
+						print("|  {} |".format(self.neighborhood[row][col].getNumMonster()), end ='')
+
+			for col in range(0, self.cols): 
+				if col == self.cols-1:
+					print("|_____|")
+				else:
+					print("|_____|", end = '' )
 
 			for col in range(0, self.cols): 
 				currentLocation  = [row, col]
-				h = self.neighborhood[row][col]
-				self.totalNumMonster = self.totalNumMonster + h.getNumMonster()
-				
-				if(self.neighborhood[row][col].getNumMonster() != 10):
-					print("|  {}  |".format(self.neighborhood[row][col].getNumMonster()), end ='')
-				
-				else:
-					print("|  {} |".format(self.neighborhood[row][col].getNumMonster()), end ='')
-			print("\n")
+				if currentLocation == location:
+					if col == self.cols-1:
+						print("   *   ")
+					else:
+						print("   *   ", end = '')
+				else: 
+					if col == self.cols-1:
+						print("       ")
+					else:
+						print("       ", end = '')
 
-			for col in range(0, self.cols): 
-				print("|_____|", end = ' ' )
-			print("\n")	
-
-			if location == currentLocation:
-				print("    *    ", end = ' ')
-			else: 
-				print("          ", end = ' ')
+			print(" ")
 				
-			print("          ")
