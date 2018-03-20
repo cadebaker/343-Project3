@@ -18,6 +18,9 @@ class Weapon(Observable):
 
 	#getter for the number of uses 
 	def getUses(self):
+		if self.numberOfUses <= 0:
+			self.update()
+			
 		return self.numberOfUses
 
 	#getter for the weapon name
