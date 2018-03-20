@@ -29,7 +29,7 @@ class Weapon(Observable):
 
 	#use the weapon 
 	def useWeapon(self):
-		self.numberOfUses = numberOfUses - 1
+		self.numberOfUses = self.numberOfUses - 1
 
 
 """******************************************************
