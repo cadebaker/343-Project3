@@ -1,4 +1,4 @@
-from observer import *
+from observer import Observable
 from random import uniform
 
 
@@ -14,6 +14,7 @@ class Weapon(Observable):
 		self.weaponName = ""
 		self.strength = 0
 		self.numberOfUses = 0
+
 
 	#getter for the number of uses 
 	def getUses(self):
@@ -31,6 +32,12 @@ class Weapon(Observable):
 	def useWeapon(self):
 		self.numberOfUses = self.numberOfUses - 1
 
+		if self.numberOfUses <= 0:
+			self.update()
+	
+	def addObs(self, Ob):
+		self.add_observer(Ob)
+
 
 """******************************************************
 *Uses the Weapon class to create a HersheyKiss and store 
@@ -39,7 +46,7 @@ class Weapon(Observable):
 class HersheyKiss(Weapon):
 
 	def __init__(self):
-		Weapon().__init__()
+		Weapon.__init__(self)
 		self.weaponName = "HersheyKisses"
 		self.strength = 1
 		self.numberOfUses = 10000000
@@ -51,7 +58,7 @@ class HersheyKiss(Weapon):
 class SourStraw(Weapon):
 
 	def __init__(self):
-		Weapon().__init__()
+		Weapon.__init__(self)
 		self.weaponName = "SourStraws"
 		self.strength = uniform(1.0, 1.75)
 		self.numberOfUses = 2
@@ -63,7 +70,7 @@ class SourStraw(Weapon):
 class ChocolateBar(Weapon):
 
 	def __init__(self):
-		Weapon().__init__()
+		Weapon.__init__(self)
 		self.weaponName = "ChocolateBars"
 		self.strength = uniform(2.0, 2.4)
 		self.numberOfUses = 4
@@ -75,7 +82,7 @@ class ChocolateBar(Weapon):
 class NerdBomb(Weapon):
 
 	def __init__(self):
-		Weapon().__init__()
+		Weapon.__init__(self)
 		self.weaponName = "NerdBombs"
 		self.strength = uniform(3.5, 5.0)
 		self.numberOfUses = 1
