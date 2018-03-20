@@ -1,4 +1,4 @@
-from observer import *
+from observer import Observer
 from random import randint
 from weapon import *
 
@@ -9,26 +9,29 @@ class Player(Observer):
 
 	#constructor 
 	def __init__(self):
-		super(Player, self).__init__()
+		Observer().__init__()
 		self.health = randint(200,250)
 		self.attackValue = randint(10,20)
 		self.weapons = [] 
 		self.location = [0, 0]
+		self.currentWeaponIndex = 0
 
 		#randomly populate the weapons inventory 
 		for index in range(0,10):
 			weaponType = randint(0, 3)
 			if weaponType == 0:
 				self.weapons.insert(index, HersheyKiss())
+				self.weapons[index].addObs(self)
 			elif weaponType == 1:
 				self.weapons.insert(index, SourStraw())
+				self.weapons[index].addObs(self)
 			elif weaponType == 2:
 				self.weapons.insert(index, ChocolateBar())
+				self.weapons[index].addObs(self)
 			elif weaponType == 3:
 				self.weapons.insert(index, NerdBomb())
+				self.weapons[index].addObs(self)
 
-		#for index in range(0,10):
-		#	self.weapons[index].add_observer(self)
 		#set the current weapon to be the first weapon in the inventory 		
 		self.currentWeapon = self.weapons[0]
 		
@@ -64,6 +67,7 @@ class Player(Observer):
 	#setter for the current weapon 
 	def setCurrentWeapon(self, index):
 		self.currentWeapon = self.weapons[index]
+		self.currentWeaponIndex = index
 
 	#use for the current weapon 
 	def useCurrentWeapon(self):
@@ -84,25 +88,26 @@ class Player(Observer):
 			print("  ")
 
 	#updates the weapons inventory 
-	def update(self):
-
-		for index in range(0, len(self.weapons)):
+	def updateCl(self):
 
 			#if the weapon uses if 0 we replace it with a random weapon 
-			if self.weapons[index].getUses() == 0: 
 				
-				weaponType = randint(0, 4)
-				if weaponType == 0:
-					print("You ran out of {}, your new weapon is HersheyKisses".format(self.weapons[index].getWeaponName()))
-					self.weapons[index] = HersheyKiss()
-				elif weaponType == 1:
-					print("You ran out of {}, your new weapon is SourStraws".format(self.weapons[index].getWeaponName()))
-					self.weapons[index] = SourStraw()
-				elif weaponType == 2:
-					print("You ran out of {}, your new weapon is ChocolateBars".format(self.weapons[index].getWeaponName()))
-					self.weapons[index] = ChocolateBar()
-				elif weaponType == 3:
-					print("You ran out of {}, your new weapon is NerdBomb".format(self.weapons[index].getWeaponName()))
-					self.weapons[index] = NerdBomb()
+		weaponType = randint(0, 4)
+		if weaponType == 0:
+			print(" ")
+			print("That was your last {}, your new weapon is HersheyKisses".format(self.weapons[self.currentWeaponIndex].getWeaponName()))
+			self.weapons[self.currentWeaponIndex] = HersheyKiss()
+		elif weaponType == 1:
+			print(" ")
+			print("That was your last {}, your new weapon is SourStraws".format(self.weapons[self.currentWeaponIndex].getWeaponName()))
+			self.weapons[self.currentWeaponIndex] = SourStraw()
+		elif weaponType == 2:
+			print(" ")
+			print("That was your last {}, your new weapon is ChocolateBars".format(self.weapons[self.currentWeaponIndex].getWeaponName()))
+			self.weapons[self.currentWeaponIndex] = ChocolateBar()
+		elif weaponType == 3:
+			print(" ")
+			print("That was your last {}, your new weapon is NerdBomb".format(self.weapons[self.currentWeaponIndex].getWeaponName()))
+			self.weapons[self.currentWeaponIndex] = NerdBomb()
 
-				self.setCurrentWeapon(index)
+		self.setCurrentWeapon(self.currentWeaponIndex)
