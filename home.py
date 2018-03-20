@@ -8,12 +8,13 @@ from NPC import *
 class Home(Observer, Observable): 
 	
 	def __init__(self):
-		
+
+		super().__init__()
 		self.numMonsters = randint(0, 10)
 		self.monstersInHouse = []
 		self.numPeople = 0
 
-		while len(self.monstersInHouse) <= self.numMonsters:
+		while len(self.monstersInHouse) < self.numMonsters:
 
 			monsterType = randint(0,4)
 			m = Zombie()
@@ -35,8 +36,6 @@ class Home(Observer, Observable):
 				self.monstersInHouse.append(m)
 
 			#m.add_observer(self) 
-			#print(m.getHealth())
-
 
 	#getter for the number of monster 
 	def getNumMonster(self):
@@ -54,24 +53,23 @@ class Home(Observer, Observable):
 		return self.numPeople
 
 	#method to attack all of the monsters inside of the house
-	def attackHouse(self, weaponName, attackValue):
-		print("number of monsters: {}".format(self.numMonsters))
+	def attackHouse(self, weapon, attackValue):
 		
 		for monster in range(0, self.numMonsters):
-			print("monster {}".format(monster))
-			damage = int(self.monstersInHouse[monster].getWeaponDamage(weaponName))
-			monsterHealth = self.monstersInHouse[monster].getHealth()
-			monsterHealth = monsterHealth - (damage * attackValue)
-			print("health before {}".format(self.monstersInHouse[monster].getHealth()))
-			print("health after {}".format(monsterHealth))
+			damage = int(self.monstersInHouse[monster].getWeaponDamage(weapon.getWeaponName()))
+			damage = damage * weapon.getStrength()
+			mHealth = self.monstersInHouse[monster].getHealth() - (damage * attackValue)
+			self.monstersInHouse[monster].setHealth(mHealth)
 
-			if monsterHealth > 0:
-				self.monstersInHouse[monster].setHealth(monsterHealth)
-			else:
-					print("monster killed")
+		
+
+	def update(self):
+		for monster in range(0, self.numMonsters):
+			if self.monstersInHouse[monster].getHealth() < 0:
 					self.monstersInHouse[monster] = Person()
 					self.numMonsters = self.numMonsters - 1
 					self.numPeople = self.numPeople + 1
+
 
 
 	#method to attack the player 
