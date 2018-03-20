@@ -9,7 +9,7 @@ class Home(Observer, Observable):
 	
 	def __init__(self):
 
-		super().__init__()
+		super(Home, self).__init__()
 		self.numMonsters = randint(0, 10)
 		self.monstersInHouse = []
 		self.numPeople = 0
@@ -17,25 +17,27 @@ class Home(Observer, Observable):
 		while len(self.monstersInHouse) < self.numMonsters:
 
 			monsterType = randint(0,4)
-			m = Zombie()
 
 			if monsterType == 0:
 				m = Zombie()
+				m.addOb(self) 
 				self.monstersInHouse.append(m)
 
 			elif monsterType == 1:
 				m = Vampire()
+				m.addOb(self)  
 				self.monstersInHouse.append(m)
 
 			elif monsterType == 2:
 				m = Ghouls() 
+				m.addOb(self) 
 				self.monstersInHouse.append(m)
 
 			elif monsterType == 3:
 				m = Werewolf()
+				m.addOb(self) 
 				self.monstersInHouse.append(m)
 
-			#m.add_observer(self) 
 
 	#getter for the number of monster 
 	def getNumMonster(self):
@@ -61,14 +63,19 @@ class Home(Observer, Observable):
 			mHealth = self.monstersInHouse[monster].getHealth() - (damage * attackValue)
 			self.monstersInHouse[monster].setHealth(mHealth)
 
+		weapon.useWeapon()
+
 		
 
-	def update(self):
+	def updateCl(self):
 		for monster in range(0, self.numMonsters):
-			if self.monstersInHouse[monster].getHealth() < 0:
+			if self.monstersInHouse[monster].getHealth() <= 0:
+					p = Person()
 					self.monstersInHouse[monster] = Person()
 					self.numMonsters = self.numMonsters - 1
 					self.numPeople = self.numPeople + 1
+					p.add_observer(self)
+					self.update()
 
 
 
