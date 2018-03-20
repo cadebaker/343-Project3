@@ -1,4 +1,4 @@
-from observer import *
+from observer import Observable
 from random import *
 
 """******************************************************
@@ -21,6 +21,8 @@ class npc(Observable):
 	#set the NPC health points
 	def setHealth(self, health):
 		self.health = health
+		if health <= 0:
+			self.update()
 
 	#set the NPC attack strength
 	def setAttackStrength(self, attackStrength):
@@ -44,13 +46,16 @@ class npc(Observable):
 	def getWeaponDamageList(self):
 		return self.weaponDamage
 
+	def addOb(self, Ob):
+		self.add_observer(Ob)
+
 
 """******************************************************
 *Uses the Non-player character class to create a Person.
 ******************************************************"""
 class Person(npc):
 	def __init__(self):
-		npc().__init__()
+		npc.__init__(self)
 		self.name = "Person"
 		self.health = 100
 		self.attackStrength = -1
@@ -65,7 +70,7 @@ class Person(npc):
 ******************************************************"""
 class Zombie(npc):
 	def __init__(self):
-		npc().__init__()
+		npc.__init__(self)
 		self.name = "Zombie"
 		self.health = randint(50, 100)
 		self.attackStrength = randint(0, 10)
@@ -79,7 +84,7 @@ class Zombie(npc):
 ******************************************************"""
 class Vampire(npc):
 	def __init__(self):
-		npc().__init__()
+		npc.__init__(self)
 		self.name = "Vampire"
 		self.health = randint(100, 200)
 		self.attackStrength = randint(10, 20)
@@ -94,7 +99,7 @@ class Vampire(npc):
 ******************************************************"""
 class Ghouls(npc):
 	def __init__(self):
-		npc().__init__()
+		npc.__init__(self)
 		self.name = "Ghoul"
 		self.health = randint(40, 80)
 		self.attackStrength = randint(15, 30)
@@ -109,7 +114,7 @@ class Ghouls(npc):
 ******************************************************"""
 class Werewolf(npc):
 	def __init__(self):
-		npc().__init__()
+		npc.__init__(self)
 		self.name = "Werewolf"
 		self.health = 200
 		self.attackStrength = randint(0, 40)
