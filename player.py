@@ -10,6 +10,7 @@ class Player(Observer):
 	#constructor 
 	def __init__(self):
 		Observer().__init__()
+		#gave player extra helth to make the game longer
 		self.health = randint(200,250)
 		self.attackValue = randint(10,20)
 		self.weapons = [] 
