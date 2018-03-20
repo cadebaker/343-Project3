@@ -39,7 +39,7 @@ class Game():
 		self.cols = int(input("Number of columns: "))
 		if self.rows < 0 or self.rows > 20 or self.cols < 0 or self.cols > 20:
 			print("The number of columns must be more than 0 and less than 20.")
-			introduction()
+			self.introduction()
 		print(" ")
 		self.neighborhood.createNeighborhood(self.rows,self.cols)
 
@@ -81,7 +81,7 @@ class Game():
 			option = input("Would you like to change your current weapon? Enter y for yes and n for no: ")
 			if option == "y": 
 				weaponIndex = int(input("Enter the number of the weapon you would like to use from inventory: "))
-				if weaponIndex > 0 and weaponIndex < 9:
+				if weaponIndex >= 0 and weaponIndex <= 9:
 					self.player.setCurrentWeapon(weaponIndex)
 					print("Your current weapon is : ", self.player.getCurrentWeapon().getWeaponName())
 					print("Your uses left: ", self.player.getCurrentWeapon().getUses() )
@@ -107,9 +107,13 @@ class Game():
 
 		currentLocation = self.player.getLocation()
 		house = self.neighborhood.getHouse(currentLocation[0], currentLocation[1])
-		house.attackHouse(self.player.getCurrentWeapon().getWeaponName(), self.player.getAttackValue())
+		house.attackHouse(self.player.getCurrentWeapon(), self.player.getAttackValue())
 		damageToPlayer = house.attackPlayer()
+		house.update()
+		self.player.useCurrentWeapon()
+		self.player.update()
 		currentHealth = self.player.getHealth() - damageToPlayer
+		self.neighborhood.update()
 
 		if currentHealth > 0 :
 			self.player.setHealth(currentHealth)
@@ -129,6 +133,10 @@ class Game():
 		self.introduction()
 		self.neighborhood.printNeighborhood(self.player.getLocation())
 		self.instructions()
+
+		if self.neighborhood.getTotalNumMonster() == 0:
+			self.wonGame = 1
+			self.inGame = 0
 
 		while self.inGame == 1:
 			self.promptPlayer()
