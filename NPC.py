@@ -9,6 +9,7 @@ class npc(Observable):
 
 	#constructor
 	def __init__(self):
+		super(npc, self).__init__()
 		self.name = " "
 		self.health = 0
 		self.attackStrength =0
@@ -63,7 +64,7 @@ class Person(npc):
 *Uses the Non-player character class to create a Zombie.
 ******************************************************"""
 class Zombie(npc):
-	def __inti__(self):
+	def __init__(self):
 		npc().__init__()
 		self.name = "Zombie"
 		self.health = randint(50, 100)
@@ -77,7 +78,7 @@ class Zombie(npc):
 *Uses the Non-player character class to create a Vampire.
 ******************************************************"""
 class Vampire(npc):
-	def __inti__(self):
+	def __init__(self):
 		npc().__init__()
 		self.name = "Vampire"
 		self.health = randint(100, 200)
@@ -92,7 +93,7 @@ class Vampire(npc):
 *Uses the Non-player character class to create a Ghoul.
 ******************************************************"""
 class Ghouls(npc):
-	def __inti__(self):
+	def __init__(self):
 		npc().__init__()
 		self.name = "Ghoul"
 		self.health = randint(40, 80)
@@ -107,7 +108,7 @@ class Ghouls(npc):
 *Uses the Non-player character class to create a Werewolf
 ******************************************************"""
 class Werewolf(npc):
-	def __inti__(self):
+	def __init__(self):
 		npc().__init__()
 		self.name = "Werewolf"
 		self.health = 200
