@@ -1,4 +1,4 @@
-from observer import *
+from observer import Observer
 from player import *
 from home import *
 
@@ -101,10 +101,10 @@ class Neighborhood(Observer):
 			print(" ")
 
 	#updates the number of monsters in the neighborhood 
-	def update(self):
+	def updateCl(self):
 		self.totalNumMonster = 0
 		for row in range(0, self.rows):
 			for col in range(0, self.cols): 
-				self.totalNumMonster = self.totalNumMonster - self.neighborhood[row][col].getNumMonster()
+				self.totalNumMonster = self.totalNumMonster + self.neighborhood[row][col].getNumMonster()
 
 		
