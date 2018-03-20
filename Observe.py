@@ -1,14 +1,14 @@
 from abc import ABCMeta, abstractmethod
 
 #this code is provided by ira's powerpoint
-class observer(object):
+class Observer(object):
         __metaclass__ = ABCMeta
 
         @abstractmethod
-        def update(self):
+        def updateCl(self):
                 pass
-				
-class observable(object):
+                                
+class Observable(object):
 
         def __init__(self):    
                 self.observers = []
@@ -26,4 +26,4 @@ class observable(object):
 
         def update(self):
                 for observer in self.observers:
-                        observer.update()
+                        observer.updateCl()
