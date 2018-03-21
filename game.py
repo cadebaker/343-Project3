@@ -35,8 +35,14 @@ class Game():
 		print(" ")
 		print("How large is your neighborhood?")
 		
-		self.rows = int(input("Number of rows: "))
-		self.cols = int(input("Number of columns: "))
+		try:
+			self.rows = int(input("Number of rows: "))
+			self.cols = int(input("Number of columns: "))
+		except ValueError:
+   			print("Must enter an Integer Value")
+			print(" ")
+   			self.introduction()
+			
 		if self.rows < 0 or self.rows > 20 or self.cols < 0 or self.cols > 20:
 			print("The number of columns must be more than 0 and less than 20.")
 			self.introduction()
