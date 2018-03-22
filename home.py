@@ -8,12 +8,13 @@ from NPC import *
 class Home(Observer, Observable): 
 	
 	def __init__(self):
-
+		#create random amount of monsters
 		super(Home, self).__init__()
 		self.numMonsters = randint(0, 10)
 		self.monstersInHouse = []
 		self.numPeople = 0
 
+		#create random monsters to put in houses
 		while len(self.monstersInHouse) < self.numMonsters:
 
 			monsterType = randint(0,4)
@@ -66,7 +67,7 @@ class Home(Observer, Observable):
 		weapon.useWeapon()
 
 		
-
+	#change monsters to people if their health runs out
 	def updateCl(self):
 		for monster in range(0, self.numMonsters):
 			if self.monstersInHouse[monster].getHealth() <= 0:

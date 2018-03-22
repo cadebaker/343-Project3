@@ -10,6 +10,7 @@ class Player(Observer):
 	#constructor 
 	def __init__(self):
 		Observer().__init__()
+		#variables for health, attack values, weapons, location, and weapon index
 		#gave player extra helth to make the game longer
 		self.health = randint(200,250)
 		self.attackValue = randint(10,20)
@@ -90,9 +91,8 @@ class Player(Observer):
 
 	#updates the weapons inventory 
 	def updateCl(self):
-
-			#if the weapon uses if 0 we replace it with a random weapon 
 				
+		#if the weapon has 0 uses left, we replace it with a random weapon and notify the user
 		weaponType = randint(0, 4)
 		if weaponType == 0:
 			print(" ")

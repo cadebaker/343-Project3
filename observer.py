@@ -1,13 +1,22 @@
 from abc import ABCMeta, abstractmethod
 
-#this code is provided by ira's powerpoint
+
+"""******************************************************
+*Class that was provided by Professor Woodring's notes 
+*to implement the observer functionality into Zork
+******************************************************"""
+#observer class with an update method
 class Observer(object):
         __metaclass__ = ABCMeta
 
         @abstractmethod
         def updateCl(self):
                 pass
-                                
+
+"""******************************************************
+*Class that was provided by Professor Woodring's notes 
+*to implement the observable functionality into Zork
+******************************************************"""                                
 class Observable(object):
 
         def __init__(self):    

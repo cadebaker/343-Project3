@@ -38,6 +38,7 @@ class Weapon(Observable):
 		if self.numberOfUses <= 0:
 			self.update()
 	
+	#method to add an observer
 	def addObs(self, Ob):
 		self.add_observer(Ob)
 

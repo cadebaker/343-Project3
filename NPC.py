@@ -40,12 +40,15 @@ class npc(Observable):
 	def getAttackStrength(self):
 		return self.attackStrength
 
+	#get the weapon damage
 	def getWeaponDamage(self, name):
 		return self.weaponDamage.get(name)
 
+	#get the weapon damage list
 	def getWeaponDamageList(self):
 		return self.weaponDamage
 
+	#add an observer object
 	def addOb(self, Ob):
 		self.add_observer(Ob)
 

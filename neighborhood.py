@@ -3,7 +3,8 @@ from player import *
 from home import *
 
 """******************************************************
-*A class that represents the entire neighborhood
+*A class that represents the entire neighborhood of the
+*Zork game
 ******************************************************"""
 class Neighborhood(Observer):
 
@@ -43,7 +44,7 @@ class Neighborhood(Observer):
 		currentLocation = [0, 0] 
 
 		for row in range(0, self.rows):
-
+			#print the current location
 			for col in range(0, self.cols): 
 				currentLocation  = [row, col]
 				if col == self.cols-1:
@@ -51,18 +52,21 @@ class Neighborhood(Observer):
 				else:
 					print(" {}".format(currentLocation), end = '' )
 
+			#print format for horizontal lines
 			for col in range(0, self.cols):
 				if col == self.cols-1:
 					print(" _____ ")
 				else: 
 					print(" _____ ", end = '' )
 
+			#print format for vertical lines
 			for col in range(0, self.cols):
 				if col == self.cols-1:
 					print("|     |")
 				else: 
 					print("|     |", end = '' )
 
+			#print number of monsters in the house inside the formatted box
 			for col in range(0, self.cols): 
 				h = self.neighborhood[row][col]
 				self.totalNumMonster = self.totalNumMonster + h.getNumMonster()
@@ -85,6 +89,7 @@ class Neighborhood(Observer):
 				else:
 					print("|_____|", end = '' )
 
+			#show the selected house
 			for col in range(0, self.cols): 
 				currentLocation  = [row, col]
 				if currentLocation == location:
